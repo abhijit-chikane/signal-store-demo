@@ -28,7 +28,7 @@ const initialAppState: TodoState = {
 };
 
 export const TodoStore = signalStore(
-{ providedIn : 'root' },
+{ providedIn : 'root', protectedState: true },
   withState(initialAppState),
   withRequestStatus(['getTodos']),
   withComputed(() => ({
