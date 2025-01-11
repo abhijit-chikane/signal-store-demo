@@ -76,7 +76,7 @@ export function withRequestStatus<Name extends string>(
         }, {} as RequestStatusSignals<Name>), 
     ),
     withMethods((store) => ({
-      resetStatus(request: Name) {
+      resetRequestStatus(request: Name) {
         patchState(store, { [`${request}Status`]: 'init' } as RequestStatusState<Name>);
       },
     })),

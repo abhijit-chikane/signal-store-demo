@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, untracked } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TodoStore } from '../todo.store';
 
@@ -16,7 +16,7 @@ export class AppComponent {
       if(this.todoStore.isGetTodosFulfilled()){
         // if api succeed do your stuff
         // there should be a easy way to reset the state back to init
-        this.todoStore.resetStatus('getTodos')
+        untracked(()=> this.todoStore.resetRequestStatus('getTodos'));
       }
     })
   }
