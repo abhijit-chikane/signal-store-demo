@@ -1,5 +1,5 @@
 import { Signal, computed } from '@angular/core';
-import { signalStoreFeature, withComputed, withState } from '@ngrx/signals';
+import { patchState, signalStoreFeature, withComputed, withMethods, withState } from '@ngrx/signals';
 
 /**
  * Represents the status of a request.
@@ -75,6 +75,11 @@ export function withRequestStatus<Name extends string>(
           };
         }, {} as RequestStatusSignals<Name>), 
     ),
+    withMethods((store) => ({
+      resetStatus(request: Name) {
+        patchState(store, { [`${request}Status`]: 'init' } as RequestStatusState<Name>);
+      },
+    })),
   );
 }
 
